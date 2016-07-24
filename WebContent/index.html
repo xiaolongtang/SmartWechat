@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>index</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/ionic.min.css" rel="stylesheet">
+        <style>
+            body {
+                cursor: url('http://www.runoob.com/static/img/finger.png'), auto;
+            }
+            .nav{height: 46px !important;}
+            .navblock{position: absolute;left: 42%;width: 80px;}
+            .locationIMG{height: 22px;width: 18px;float: left;margin-top: 8px;}
+            .tit{font-size: 18px;margin-left: 25px;margin-top: 10px;color: #0944ba;}
+            .title1{color: #0944ba;}
+            .temp{float: right;}
+            .dot{background: #3ebf6c;border: 1px;border-radius: 50%;width:17px; height:17px;float: left;margin-top: 2px;margin-left: 13px;}
+            .air{border: 1px;border-radius: 10%; background: #f8f8f8;height: 120px;width: 140px;position: absolute;top: 25px;left: 12px;}
+            .air p{font-size: 18px;margin-top: 12px;margin-left: 10px;}
+            .air span{font-size: 20px;margin-left: 2px;color: #0944ba;}
+            .pic{position: absolute;top: 40px;right: 18px;}
+            .pic img{width: 146px;height: 291px; margin-top: 180px;}
+            .temperature{position: absolute;left: 6%;margin-top: 392px;font-size: 53px;color: #0944ba;}
+            .humidity{position: absolute;left: 6%;margin-top: 455px;font-size: 30px;color: #d7af0c;}
+        </style>
+
+    </head>
+
+    <body ng-app="starter">
+    <ion-nav-view></ion-nav-view>
+    
+    <script id="menu.html" type="text/ng-template">
+    <ion-side-menus>
+
+      <ion-pane ion-side-menu-content>
+        <ion-nav-bar class="bar-stable nav-title-slide-ios7 nav">
+          <ion-nav-back-button class="button-clear"><i class="icon ion-chevron-left"></i> Back</ion-nav-back-button>
+        </ion-nav-bar>
+        <ion-nav-view name="menuContent" animation="slide-left-right"></ion-nav-view>
+      </ion-pane>
+
+      <ion-side-menu side="left">
+        <header class="bar bar-header bar-stable nav">
+          <h1 class="title">Location</h1>
+        </header>
+        <ion-content class="has-header">
+          <ion-list>
+          <ion-item nav-clear menu-close ng-repeat="location in locations" href="#/app/{{location.location}}" class="title1">
+          {{location.location}}   <div class="temp">{{location.temp}}℃</div>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-side-menu>
+    </ion-side-menus>
+      
+    </script>
+
+    <script id="playlists.html" type="text/ng-template">
+    <ion-view style="background:#f3f3f3;" >
+      <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+        <div class="navblock"><img class="locationIMG" src="images/location.png"><p class="tit">Dalian</p></div>
+      </ion-nav-buttons>
+      
+      <ion-content>
+      <div class="air">
+           <div>
+           <div class="dot"></div>
+           <p>&nbsp;&nbsp;PM2.5 <span>{{pm25.value}}</span></p>
+           </div>
+           
+           <div>
+           <div class="dot"></div>
+           <p>&nbsp;&nbsp;PM 10 <span>{{pm10.value}}</span></p>
+           </div>
+   
+           <div>
+           <div class="dot"></div>
+           <p>&nbsp;&nbsp;PM1.0 <span>{{pm1.value}}</span></p>
+           </div>
+      </div>
+      <div class="pic"><img src="images/ren.png"></div>
+      
+      <div class="temperature">{{temperature.value}}℃</div>
+      <div class="humidity">Humidity: {{humidity.value}}%</div>
+      </ion-content>
+      
+    </ion-view>  
+    </script>
+
+    <script src="js/ionic.bundle.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
