@@ -40,22 +40,26 @@ angular.module('starter', ['ionic'])
         })
 
         .controller('AppCtrl', function ($scope,$http) {
-//        	$http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=temperature').success(function(data){
-////    			var temp=data;
-//    			var locations=[
-//    			                  {location:'Dalian', temp:data.value},
+        	$http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=temperature').success(function(data){
+//    			var temp=data;
+        		var locationArray=[
 //    			                  {location:'Beijing', temp:26},
 //    			                  {location:'Shenzhen', temp:27},
 //    			                  {location:'Budapest', temp:24}
-//    			                      ];
-//    		});
+    			                      ];
+        		locationArray.push({location:'Dalian',temp:data.value});
+        		locationArray.push({location:'Beijing',temp:26.3});
+        		locationArray.push({location:'Shenzhen',temp:27.2});
+        		locationArray.push({location:'Budapest',temp:24.7});
+        		$scope.locations=locationArray;
+    		});
         	
-            $scope.locations=[
-        {location:'Dalian', temp:26},
-        {location:'Beijing', temp:26},
-        {location:'Shenzhen', temp:27},
-        {location:'Budapest', temp:24}
-            ];
+//            $scope.locations=[
+//        {location:'Dalian', temp:26},
+//        {location:'Beijing', temp:26},
+//        {location:'Shenzhen', temp:27},
+//        {location:'Budapest', temp:24}
+//            ];
         })
 
 //        .controller('PlaylistsCtrl', function ($scope) {
@@ -77,15 +81,17 @@ angular.module('starter', ['ionic'])
                 console.log("function running...");
 	    		$http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=pm2.5').success(function(data){
 	    			$scope.pm25=data;
-                                console.log(data);
+//                                console.log(data);
+	    			$scope.pm25c=getColor(data.value);
 	    		});
 	    		$http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=pm10').success(function(data){
 	    			$scope.pm10=data;
-                                console.log(data);
+//                                console.log(data);
+                    $scope.pm10c=getColor(data.value);
 	    		});
 	    		$http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=pm1.0').success(function(data){
 	    			$scope.pm1=data;
-                                console.log(data);
+	    			$scope.pm1c=getColor(data.value);
 	    		});
 	    		$http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=temperature').success(function(data){
 	    			$scope.temperature=data;
@@ -101,6 +107,18 @@ angular.module('starter', ['ionic'])
              },10000);
              
              updateStatus();
+             
+             var getColor=function (num){
+            	 if(num<=50 &&num>0){
+            		 return "#3ebf6c";
+            	 }else if(num>50 && num<=100){
+            		 return "#d7af0c";
+            	 }else if(num>100 && num<=150){
+            		 return "#dd0000";
+            	 }else{
+            		 return "#6d6d6d";
+            	 }
+             };
              
 //            $scope.apply(updateStatus);
 //            $scope.apply(setInterval);

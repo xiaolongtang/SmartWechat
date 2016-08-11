@@ -1,0 +1,6 @@
+---
+applications:
+ - name: smart-web-wechat
+   buildpack: java_buildpack
+   path: SmartWebWechat.war
+   #path: pgstudio-0.0.1-SNAPSHOT.war
