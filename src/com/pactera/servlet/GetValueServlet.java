@@ -30,8 +30,9 @@ public class GetValueServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String type=request.getParameter("type");
+		String location=request.getParameter("location");
 		NodeDAO nDAO=new NodeDAO();
-		DataNode dn=nDAO.getLatestValue(type);
+		DataNode dn=nDAO.getLatestValue(type,location);
 		JsonConfig jsonConfig = new JsonConfig();
         jsonConfig.registerJsonValueProcessor(java.util.Date.class, new JsonValueProcessorImpl());
         

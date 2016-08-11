@@ -10,11 +10,11 @@ import com.pactera.util.DatabaseUtil;
 
 public class NodeDAO {
 
-	public DataNode getLatestValue(String type) {
+	public DataNode getLatestValue(String type,String location) {
 		Connection conn = null;
 		Statement st = null;
 		ResultSet rs = null;
-		String sql = "select * from t_pi where c_name='"+type+"' order by d_dateline desc";
+		String sql = "select * from t_pi where c_name='"+type+"' and c_deviceid='"+location+"' order by d_dateline desc";
 		DataNode dn = new DataNode();
 
 		try {
