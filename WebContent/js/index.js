@@ -54,12 +54,12 @@ angular.module('starter', ['ionic'])
                         }
                     })
                     
-                     .state('app.Budapest', {
-                        url: "/Budapest",
+                     .state('app.Shanghai', {
+                        url: "/Shanghai",
                         views: {
                             'menuContent': {
-                                templateUrl: "Budapest.html",
-                                controller: 'BudapestCtrl'
+                                templateUrl: "Shanghai.html",
+                                controller: 'ShanghaiCtrl'
                             }
                         }
                     })
@@ -83,8 +83,8 @@ angular.module('starter', ['ionic'])
             	$scope.locations.push({location:'Shenzhen',temp:data.value});
         	});
             
-            $http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=temperature&location=bud').success(function(data){
-            	$scope.locations.push({location:'Budapest',temp:data.value});
+            $http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=temperature&location=sh').success(function(data){
+            	$scope.locations.push({location:'Shanghai',temp:data.value});
         	});
         })
 
@@ -232,29 +232,29 @@ angular.module('starter', ['ionic'])
              
         })
        
-          .controller('BudapestCtrl', function ($scope,$http) {
+          .controller('ShanghaiCtrl', function ($scope,$http) {
             console.log("controller running...");
             var updateStatus = function(){
                 console.log("function running...");
-	    		$http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=pm2.5&location=bud').success(function(data){
+	    		$http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=pm2.5&location=sh').success(function(data){
 	    			$scope.pm25=data;
 //                                console.log(data);
 	    			$scope.pm25c=getColor(data.value);
 	    		});
-	    		$http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=pm10&location=bud').success(function(data){
+	    		$http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=pm10&location=sh').success(function(data){
 	    			$scope.pm10=data;
 //                                console.log(data);
                     $scope.pm10c=getColor(data.value);
 	    		});
-	    		$http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=pm1.0&location=bud').success(function(data){
+	    		$http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=pm1.0&location=sh').success(function(data){
 	    			$scope.pm1=data;
 	    			$scope.pm1c=getColor(data.value);
 	    		});
-	    		$http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=temperature&location=bud').success(function(data){
+	    		$http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=temperature&location=sh').success(function(data){
 	    			$scope.temperature=data;
                                 console.log(data);
 	    		});
-	    		$http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=humidity&location=bud').success(function(data){
+	    		$http.get('https://smart-web-wechat.run.aws-usw02-pr.ice.predix.io/value?type=humidity&location=sh').success(function(data){
 	    			$scope.humidity=data;
                                 console.log(data);
 	    		});
